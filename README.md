@@ -50,6 +50,7 @@ The model shows significant improvement over the baseline, achieving optimized a
 
 | Metric | Value | Improvement / Note |
 | :--- | :---: | :--- |
+| **mAP@50** | `0.68` | 🟢 **+0.38** |
 | **Mean IoU** | `0.55` | 🟢 **+0.29** |
 | **Base IoU** | `0.26` | Baseline Reference |
 | **Improvement** | **+0.29** | 🚀 **111% gain** |
