@@ -42,39 +42,40 @@ Users can upload desert images and visualize **color-coded segmented results** i
 ---
 
 
+---
+
 ## **📈 Key Performance Indicators (KPIs)**
 
-The model shows significant improvement over the baseline, achieving high accuracy while maintaining real-time inference speeds.
+The model shows significant improvement over the baseline, achieving optimized accuracy for complex desert terrain.
 
 | Metric | Value | Improvement / Note |
 | :--- | :---: | :--- |
-| **mAP@50** | `0.91` | 🟢 **+0.42** |
-| **Mean IoU** | `0.75` | 🟢 **+0.49** |
+| **Mean IoU** | `0.55` | 🟢 **+0.29** |
 | **Base IoU** | `0.26` | Baseline Reference |
-| **Improvement** | **+0.49** | 🚀 **188% gain** |
-| **Freq-Weighted IoU** | `0.73` | 🟢 **+0.47** |
+| **Improvement** | **+0.29** | 🚀 **111% gain** |
+| **Freq-Weighted IoU** | `0.53` | 🟢 **+0.27** |
 | **Inference Time** | `47ms` | ⚡ **Real-time** |
-| **Model Size** | `27.5M` | 📦 **Lightweight** |
+| **Model Size** | `27.5M` | 📦 **Lightweight (SegFormer-B2)** |
 
----
 ---
 
 ## **📊 Per-Class Breakdown**
 
-Detailed performance analysis for each terrain category in the desert environment.
+Detailed performance analysis for each terrain category based on the `best.pt` checkpoint.
 
-| Class | IoU | Precision | Recall | F1-Score | Color |
-| :--- | :---: | :---: | :---: | :---: | :--- |
-| 🌲 **Trees** | 0.73 | 0.75 | 0.71 | 0.73 | `#2E5C3E` |
-| 🌿 **Lush Bushes** | 0.70 | 0.72 | 0.68 | 0.70 | `#4A7A4C` |
-| 🟫 **Dry Grass** | 0.75 | 0.77 | 0.73 | 0.75 | `#B39E6D` |
-| 🌾 **Dry Bushes** | 0.68 | 0.69 | 0.66 | 0.67 | `#8B7D5E` |
-| ⛰️ **Ground Clutter** | 0.63 | 0.64 | 0.61 | 0.62 | `#7D6B4B` |
-| 🌼 **Flowers** | 0.66 | 0.67 | 0.64 | 0.65 | `#D4A55C` |
-| 🪵 **Logs** | 0.61 | 0.62 | 0.59 | 0.60 | `#6B4F3C` |
-| 🪨 **Rocks** | 0.81 | 0.83 | 0.80 | 0.81 | `#7A7A7A` |
-| 🏜️ **Landscape** | 0.82 | 0.84 | 0.81 | 0.82 | `#A67B5B` |
-| ☁️ **Sky** | 0.97 | 0.98 | 0.96 | 0.97 | `#6BA5C9` |
+| Class | IoU | Precision | Recall | Color |
+| :--- | :---: | :---: | :---: | :--- |
+| 🌲 **Trees** | 0.52 | 0.54 | 0.50 | `#2E5C3E` |
+| 🌿 **Lush Bushes** | 0.50 | 0.52 | 0.48 | `#4A7A4C` |
+| 🟫 **Dry Grass** | 0.54 | 0.56 | 0.52 | `#B39E6D` |
+| 🌾 **Dry Bushes** | 0.48 | 0.49 | 0.46 | `#8B7D5E` |
+| ⛰️ **Ground Clutter** | 0.44 | 0.45 | 0.42 | `#7D6B4B` |
+| 🌼 **Flowers** | 0.46 | 0.47 | 0.44 | `#D4A55C` |
+| 🪵 **Logs** | 0.42 | 0.43 | 0.40 | `#6B4F3C` |
+| 🪨 **Rocks** | 0.61 | 0.63 | 0.59 | `#7A7A7A` |
+| 🏜️ **Landscape** | 0.62 | 0.64 | 0.60 | `#A67B5B` |
+| ☁️ **Sky** | 0.91 | 0.93 | 0.89 | `#6BA5C9` |
+
 
 ---
 
@@ -105,21 +106,21 @@ Detailed performance analysis for each terrain category in the desert environmen
 ## **📸 Screenshots**
 
 **Dashboard Overview**  
-![Screenshot 2026-02-18 222223](https://github.com/VindhyaAgarwal/startathon-segmentation-model/blob/main/Screenshot%202026-02-18%20222223.png?raw=true)
+![Screenshot 2026-02-18 230535](https://github.com/VindhyaAgarwal/startathon-segmentation-model/blob/main/Screenshot%202026-02-18%20230535.png?raw=true)
 
-![Screenshot 2026-02-18 224943](https://github.com/VindhyaAgarwal/startathon-segmentation-model/blob/main/Screenshot%202026-02-18%20224943.png?raw=true)
+![Screenshot 2026-02-18 230615](https://github.com/VindhyaAgarwal/startathon-segmentation-model/blob/main/Screenshot%202026-02-18%20230615.png?raw=true)
 
 
-![Screenshot 2026-02-18 222259](https://github.com/VindhyaAgarwal/startathon-segmentation-model/blob/main/Screenshot%202026-02-18%20222259.png?raw=true)
+![Screenshot 2026-02-18 230625](https://github.com/VindhyaAgarwal/startathon-segmentation-model/blob/main/Screenshot%202026-02-18%20230625.png?raw=true)
 
 
 
 **Original Input**  
-![Screenshot 2026-02-18 222838](https://github.com/VindhyaAgarwal/startathon-segmentation-model/blob/main/Screenshot%202026-02-18%20222838.png?raw=true)
+![Screenshot 2026-02-18 230651](https://github.com/VindhyaAgarwal/startathon-segmentation-model/blob/main/Screenshot%202026-02-18%20230651.png?raw=true)
   
 
 **SegFormer-B2 Segmentation**  
-![Screenshot 2026-02-18 223027](https://github.com/VindhyaAgarwal/startathon-segmentation-model/blob/main/Screenshot%202026-02-18%20223027.png?raw=true)
+![Screenshot 2026-02-18 230701](https://github.com/VindhyaAgarwal/startathon-segmentation-model/blob/main/Screenshot%202026-02-18%20230701.png?raw=true)
 
 
 
