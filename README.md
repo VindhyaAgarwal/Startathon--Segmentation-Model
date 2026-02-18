@@ -3,7 +3,7 @@
 # 🌵 Duality AI · SegFormer-B2 Desert Segmentation Dashboard
 
 ![Segmentation Badge](https://img.shields.io/badge/SegFormer-B2-blue) 
-![mAP@50](https://img.shields.io/badge/mAP@50-0.70-green) 
+![mAP@50](https://img.shields.io/badge/mAP@50-0.82-green) 
 ![Hackathon](https://img.shields.io/badge/Hackathon-Startathon-orange)
 
 # Model Checkpoints
