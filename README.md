@@ -1,6 +1,6 @@
 # Startathon-Segmentation-Model
 
-# 🌵 Duality AI · SegFormer-B2 Desert Segmentation Dashboard
+# Duality AI · SegFormer-B2 Desert Segmentation Dashboard
 
 ![Segmentation Badge](https://img.shields.io/badge/SegFormer-B2-blue) 
 ![mAP@50](https://img.shields.io/badge/mAP@50-0.82-green) 
@@ -15,14 +15,14 @@
 
 ---
 
-## **🚀 Project Overview**
+## ** Project Overview**
 
 This project showcases a **semantic segmentation dashboard** for desert environments, powered by **SegFormer-B2**, a state-of-the-art transformer-based model.  
 Users can upload desert images and visualize **color-coded segmented results** in real-time. The dashboard also displays **per-class IoU, precision, recall**, and other performance metrics in an interactive, VS Code Dark+ themed UI.
 
 ---
 
-## **🎯 Features**
+## ** Features**
 
 - Upload desert images for instant segmentation
 - Interactive **segmentation preview** with class-specific color coding
