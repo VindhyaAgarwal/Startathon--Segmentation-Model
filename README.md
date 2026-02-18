@@ -110,21 +110,20 @@ Detailed performance analysis for each terrain category based on the `best.pt` c
 ## **📸 Screenshots**
 
 **Dashboard Overview**  
-![Screenshot 2026-02-18 230535](https://github.com/VindhyaAgarwal/startathon-segmentation-model/blob/main/Screenshot%202026-02-18%20230535.png?raw=true)
+![Screenshot 2026-02-18 233949](https://github.com/VindhyaAgarwal/startathon-segmentation-model/blob/main/Screenshot%202026-02-18%20233949.png?raw=true)
 
-![Screenshot 2026-02-18 230615](https://github.com/VindhyaAgarwal/startathon-segmentation-model/blob/main/Screenshot%202026-02-18%20230615.png?raw=true)
+![Screenshot 2026-02-18 234011](https://github.com/VindhyaAgarwal/startathon-segmentation-model/blob/main/Screenshot%202026-02-18%20234011.png?raw=true)
 
-
-![Screenshot 2026-02-18 230625](https://github.com/VindhyaAgarwal/startathon-segmentation-model/blob/main/Screenshot%202026-02-18%20230625.png?raw=true)
+![Screenshot 2026-02-18 234020](https://github.com/VindhyaAgarwal/startathon-segmentation-model/blob/main/Screenshot%202026-02-18%20234020.png?raw=true)
 
 
 
 **Original Input**  
-![Screenshot 2026-02-18 230651](https://github.com/VindhyaAgarwal/startathon-segmentation-model/blob/main/Screenshot%202026-02-18%20230651.png?raw=true)
+![Screenshot 2026-02-18 234039](https://github.com/VindhyaAgarwal/startathon-segmentation-model/blob/main/Screenshot%202026-02-18%20234039.png?raw=true)
   
 
 **SegFormer-B2 Segmentation**  
-![Screenshot 2026-02-18 230701](https://github.com/VindhyaAgarwal/startathon-segmentation-model/blob/main/Screenshot%202026-02-18%20230701.png?raw=true)
+![Screenshot 2026-02-18 234050](https://github.com/VindhyaAgarwal/startathon-segmentation-model/blob/main/Screenshot%202026-02-18%20234050.png?raw=true)
 
 
 
@@ -153,6 +152,31 @@ Detailed performance analysis for each terrain category based on the `best.pt` c
 
 4.  **Launch Dashboard:**
     Open `index.html` in your browser or deploy via Netlify app.
+
+---
+
+## **🔄 How to Reproduce Results**
+
+To reproduce the benchmarked **0.689 mIoU** and **0.82 mAP@50** results, follow these steps:
+
+1.  **Model Checkpoint:** Ensure the `best.pt` weights (fine-tuned SegFormer-B2) are placed in the `/model` directory.
+2.  **Input Preprocessing:** The system automatically resizes all input desert images to **512x512** pixels and applies ImageNet normalization as required by the MiT-B2 backbone.
+3.  **Validation Process:** * Dataset: Falcon Digital Twin Desert Dataset.
+    * Execution: Run the backend inference on the validation set (612 samples).
+    * Verification: Compare the output masks against the ground truth to verify the **0.67 Frequency-Weighted IoU**.
+
+---
+
+## **💡 Interpreting the Output**
+
+Understanding the dashboard results:
+
+* **Segmentation Mask:** The color-coded overlay represents the model's pixel-level classification. Each color corresponds to a specific terrain class (e.g., `#6BA5C9` for Sky).
+* **Confidence Score:** Displayed as a percentage (e.g., **85%+**), it indicates the model's statistical certainty regarding the dominant class detected in the frame.
+* **Inference Time:** Measured in milliseconds (ms). Our target is **<50ms**, which confirms the model is optimized for real-time edge deployment and low-latency applications.
+* **Per-Class IoU:** Shows which specific desert features (like Rocks or Trees) the model is most accurate at identifying.
+
+---
 
 ---
 
