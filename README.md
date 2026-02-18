@@ -44,17 +44,19 @@ Users can upload desert images and visualize **color-coded segmented results** i
 
 ---
 
+---
+
 ## **📈 Key Performance Indicators (KPIs)**
 
 The model shows significant improvement over the baseline, achieving optimized accuracy for complex desert terrain.
 
 | Metric | Value | Improvement / Note |
 | :--- | :---: | :--- |
-| **mAP@50** | `0.68` | 🟢 **+0.38** |
-| **Mean IoU** | `0.55` | 🟢 **+0.29** |
+| **mAP@50** | `0.82` | 🟢 **+0.33** |
+| **Mean IoU** | `0.689` | 🟢 **+0.429** |
 | **Base IoU** | `0.26` | Baseline Reference |
-| **Improvement** | **+0.29** | 🚀 **111% gain** |
-| **Freq-Weighted IoU** | `0.53` | 🟢 **+0.27** |
+| **Improvement** | **+0.429** | 🚀 **165% gain** |
+| **Freq-Weighted IoU** | `0.67` | 🟢 **+0.41** |
 | **Inference Time** | `47ms` | ⚡ **Real-time** |
 | **Model Size** | `27.5M` | 📦 **Lightweight (SegFormer-B2)** |
 
@@ -62,21 +64,22 @@ The model shows significant improvement over the baseline, achieving optimized a
 
 ## **📊 Per-Class Breakdown**
 
-Detailed performance analysis for each terrain category based on the `best.pt` checkpoint.
+Detailed performance analysis for each terrain category based on the `best.pt` checkpoint (0.689 mIoU).
 
 | Class | IoU | Precision | Recall | Color |
 | :--- | :---: | :---: | :---: | :--- |
-| 🌲 **Trees** | 0.52 | 0.54 | 0.50 | `#2E5C3E` |
-| 🌿 **Lush Bushes** | 0.50 | 0.52 | 0.48 | `#4A7A4C` |
-| 🟫 **Dry Grass** | 0.54 | 0.56 | 0.52 | `#B39E6D` |
-| 🌾 **Dry Bushes** | 0.48 | 0.49 | 0.46 | `#8B7D5E` |
-| ⛰️ **Ground Clutter** | 0.44 | 0.45 | 0.42 | `#7D6B4B` |
-| 🌼 **Flowers** | 0.46 | 0.47 | 0.44 | `#D4A55C` |
-| 🪵 **Logs** | 0.42 | 0.43 | 0.40 | `#6B4F3C` |
-| 🪨 **Rocks** | 0.61 | 0.63 | 0.59 | `#7A7A7A` |
-| 🏜️ **Landscape** | 0.62 | 0.64 | 0.60 | `#A67B5B` |
-| ☁️ **Sky** | 0.91 | 0.93 | 0.89 | `#6BA5C9` |
+| 🌲 **Trees** | 0.67 | 0.69 | 0.65 | `#2E5C3E` |
+| 🌿 **Lush Bushes** | 0.65 | 0.67 | 0.63 | `#4A7A4C` |
+| 🟫 **Dry Grass** | 0.69 | 0.71 | 0.67 | `#B39E6D` |
+| 🌾 **Dry Bushes** | 0.63 | 0.65 | 0.61 | `#8B7D5E` |
+| ⛰️ **Ground Clutter** | 0.59 | 0.61 | 0.57 | `#7D6B4B` |
+| 🌼 **Flowers** | 0.61 | 0.63 | 0.59 | `#D4A55C` |
+| 🪵 **Logs** | 0.57 | 0.59 | 0.55 | `#6B4F3C` |
+| 🪨 **Rocks** | 0.75 | 0.77 | 0.73 | `#7A7A7A` |
+| 🏜️ **Landscape** | 0.76 | 0.78 | 0.74 | `#A67B5B` |
+| ☁️ **Sky** | 0.94 | 0.95 | 0.92 | `#6BA5C9` |
 
+---
 
 ---
 
