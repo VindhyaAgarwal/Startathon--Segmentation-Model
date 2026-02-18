@@ -1,4 +1,4 @@
-# Startathon--Segmentation-Model
+# Startathon-Segmentation-Model
 
 # 🌵 Duality AI · SegFormer-B2 Desert Segmentation Dashboard
 
@@ -104,14 +104,26 @@ Detailed performance analysis for each terrain category in the desert environmen
 
 ## **📸 Screenshots**
 
+**Dashboard Overview**  
+
+<img width="1919" height="1015" alt="Screenshot 2026-02-18 222223" src="https://github.com/user-attachments/assets/83fdb543-7ad5-43ce-8e00-3d936029fe85" />
+
+ 
+<img width="1919" height="1064" alt="Screenshot 2026-02-18 222245" src="https://github.com/user-attachments/assets/ac9990b0-ff11-4996-8bfb-b37b52a72e15" />
+
+
+<img width="1909" height="1012" alt="Screenshot 2026-02-18 222259" src="https://github.com/user-attachments/assets/a3fff50f-d699-4f14-9a0f-804394ceb189" />
+
+
+
 **Original Input**  
-![Original Desert](./images/original_desert.png)  
+<img width="1872" height="956" alt="image" src="https://github.com/user-attachments/assets/0898bad4-6292-49b7-bf4e-a21390573991" />
+  
 
 **SegFormer-B2 Segmentation**  
-![Segmented Result](./images/segmented_desert.png)  
+<img width="1917" height="994" alt="image" src="https://github.com/user-attachments/assets/13133342-2e19-4df5-b1fd-91f77e06d8b9" />
 
-**Dashboard Overview**  
-![Dashboard Metrics](./images/dashboard_metrics.png)  
+
 
 > 💡 **Note:** Place all frontend images in an `images/` folder at the root of your repository. Update paths in your README accordingly.
 
