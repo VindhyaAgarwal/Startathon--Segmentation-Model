@@ -1,89 +1,113 @@
 import torch
-from torch.utils.data import Dataset, DataLoader
 import numpy as np
 from torch import nn
 import torch.nn.functional as F
-import matplotlib.pyplot as plt
-import torchvision.transforms as transforms
+import torchvision.transforms as T
 from PIL import Image
-import cv2
 import os
 from tqdm import tqdm
+import cv2
 
-# Mapping from raw pixel values to new class IDs
-value_map = {0: 0, 100: 1, 200: 2, 300: 3, 500: 4, 550: 5, 700: 6, 800: 7, 7100: 8, 10000: 9}
-class_names = ['Background', 'Trees', 'Lush Bushes', 'Dry Grass', 'Dry Bushes', 'Ground Clutter', 'Logs', 'Rocks', 'Landscape', 'Sky']
+value_map = {
+    0: 0, 100: 1, 200: 2, 300: 3, 500: 4,
+    550: 5, 700: 6, 800: 7, 7100: 8, 10000: 9
+}
+
 n_classes = len(value_map)
-
-color_palette = np.array([[0,0,0], [34,139,34], [0,255,0], [210,180,140], [139,90,43], [128,128,0], [139,69,19], [128,128,128], [160,82,45], [135,206,235]], dtype=np.uint8)
 
 def convert_mask(mask):
     arr = np.array(mask)
     new_arr = np.zeros_like(arr, dtype=np.uint8)
     for raw_value, new_value in value_map.items():
         new_arr[arr == raw_value] = new_value
-    return Image.fromarray(new_arr)
+    return new_arr
 
-class MaskDataset(Dataset):
-    def __init__(self, data_dir, transform=None, mask_transform=None):
-        self.image_dir = os.path.join(data_dir, 'Color_Images')
-        self.masks_dir = os.path.join(data_dir, 'Segmentation')
-        self.transform = transform
-        self.mask_transform = mask_transform
-        self.data_ids = sorted(os.listdir(self.image_dir))
-    def __len__(self): return len(self.data_ids)
-    def __getitem__(self, idx):
-        data_id = self.data_ids[idx]
-        image = Image.open(os.path.join(self.image_dir, data_id)).convert("RGB")
-        mask = convert_mask(Image.open(os.path.join(self.masks_dir, data_id)))
-        if self.transform:
-            image = self.transform(image)
-            mask = (self.mask_transform(mask) * 255).long()
-        return image, mask, data_id
-
-class SegmentationHeadConvNeXt(nn.Module):
+class SegmentationHead(nn.Module):
     def __init__(self, in_channels, out_channels, tokenW, tokenH):
         super().__init__()
         self.H, self.W = tokenH, tokenW
-        self.stem = nn.Sequential(nn.Conv2d(in_channels, 256, 3, padding=1), nn.BatchNorm2d(256), nn.GELU())
-        self.block = nn.Sequential(nn.Conv2d(256, 256, 7, padding=3, groups=256), nn.BatchNorm2d(256), nn.GELU(), nn.Conv2d(256, 512, 1), nn.GELU(), nn.Conv2d(512, 256, 1), nn.GELU())
+        self.stem = nn.Sequential(
+            nn.Conv2d(in_channels, 512, 3, padding=1),
+            nn.BatchNorm2d(512),
+            nn.GELU(),
+            nn.Conv2d(512, 512, 3, padding=1),
+            nn.BatchNorm2d(512),
+            nn.GELU(),
+            nn.Conv2d(512, 256, 3, padding=1),
+            nn.BatchNorm2d(256),
+            nn.GELU(),
+        )
         self.classifier = nn.Conv2d(256, out_channels, 1)
+
     def forward(self, x):
         B, N, C = x.shape
         x = x.reshape(B, self.H, self.W, C).permute(0, 3, 1, 2)
-        return self.classifier(self.block(self.stem(x)))
+        x = self.stem(x)
+        return self.classifier(x)
+
+def compute_iou(pred, target):
+    pred = torch.argmax(pred, dim=1).view(-1)
+    target = target.view(-1)
+    ious = []
+    for cls in range(n_classes):
+        intersection = ((pred == cls) & (target == cls)).sum().float()
+        union = ((pred == cls) | (target == cls)).sum().float()
+        if union == 0:
+            continue
+        ious.append((intersection / union).item())
+    return np.mean(ious)
 
 def main():
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    model_path = '/content/best_model.pth'
-    data_dir = '/content/dataset/Offroad_Segmentation_testImages'
-    output_dir = '/content/predictions'
-    os.makedirs(output_dir, exist_ok=True)
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    print("Using:", device)
 
-    w, h = 518, 518 
-    transform = transforms.Compose([transforms.Resize((h, w)), transforms.ToTensor(), transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])])
-    mask_transform = transforms.Compose([transforms.Resize((h, w), interpolation=Image.NEAREST), transforms.ToTensor()])
+    w = int(((960 / 2) // 14) * 14)
+    h = int(((540 / 2) // 14) * 14)
 
-    valset = MaskDataset(data_dir=data_dir, transform=transform, mask_transform=mask_transform)
-    val_loader = DataLoader(valset, batch_size=4, shuffle=False)
+    transform = T.Compose([
+        T.Resize((h, w)),
+        T.ToTensor(),
+        T.Normalize([0.485,0.456,0.406],[0.229,0.224,0.225])
+    ])
 
-    backbone = torch.hub.load("facebookresearch/dinov2", "dinov2_vitb14").to(device).eval()
-    classifier = SegmentationHeadConvNeXt(768, n_classes, w//14, h//14).to(device)
-    classifier.load_state_dict(torch.load(model_path, map_location=device))
-    classifier.eval()
+    val_dir = "/content/dataset/Offroad_Segmentation_Training_Dataset/val"
+    image_dir = os.path.join(val_dir, "Color_Images")
+    mask_dir = os.path.join(val_dir, "Segmentation")
 
-    print(f"Evaluating {len(valset)} test images...")
+    ids = sorted(os.listdir(image_dir))
+
+    backbone = torch.hub.load("facebookresearch/dinov2", "dinov2_vitb14_reg")
+    backbone.eval().to(device)
+
+    sample_img = transform(Image.open(os.path.join(image_dir, ids[0])).convert("RGB")).unsqueeze(0).to(device)
     with torch.no_grad():
-        for imgs, _, data_ids in tqdm(val_loader):
-            imgs = imgs.to(device)
-            features = backbone.forward_features(imgs)["x_norm_patchtokens"]
-            logits = F.interpolate(classifier(features), size=(540, 960), mode="bilinear")
-            preds = torch.argmax(logits, dim=1).cpu().numpy().astype(np.uint8)
+        tokens = backbone.forward_features(sample_img)["x_norm_patchtokens"]
 
-            for i in range(imgs.shape[0]):
-                Image.fromarray(preds[i]).save(os.path.join(output_dir, data_ids[i]))
+    embed_dim = tokens.shape[2]
+    model = SegmentationHead(embed_dim, n_classes, w // 14, h // 14).to(device)
+    model.load_state_dict(torch.load("segmentation_head.pt", map_location=device))
+    model.eval()
 
-    print(f"Predictions saved to {output_dir}")
+    all_ious = []
+    os.makedirs("predictions", exist_ok=True)
+
+    with torch.no_grad():
+        for name in tqdm(ids):
+            img = transform(Image.open(os.path.join(image_dir, name)).convert("RGB")).unsqueeze(0).to(device)
+            raw_mask = convert_mask(Image.open(os.path.join(mask_dir, name)))
+
+            feats = backbone.forward_features(img)["x_norm_patchtokens"]
+            outputs = model(feats)
+            outputs = F.interpolate(outputs, size=img.shape[2:], mode="bilinear", align_corners=False)
+
+            pred_mask = torch.argmax(outputs, dim=1).cpu().numpy()[0]
+            gt_mask = torch.from_numpy(raw_mask).long().to(device)
+
+            all_ious.append(compute_iou(outputs, gt_mask.unsqueeze(0)))
+
+            cv2.imwrite(f"predictions/{name}", pred_mask)
+
+    print("\nFINAL MEAN IoU:", np.mean(all_ious))
 
 if __name__ == "__main__":
     main()
