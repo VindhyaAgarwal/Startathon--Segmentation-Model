@@ -6,6 +6,13 @@
 ![mAP@50](https://img.shields.io/badge/mAP@50-0.70-green) 
 ![Hackathon](https://img.shields.io/badge/Hackathon-Startathon-orange)
 
+# Model Checkpoints
+
+**Download trained model**
+
+[![Download Model](https://img.shields.io/badge/Download-Model%20Checkpoint-blue?style=for-the-badge)](https://drive.google.com/drive/folders/1FxEglgVpjzD-czxGbfVEKlv5g8ygKFsV?usp=sharing)
+
+
 ---
 
 ## **🚀 Project Overview**
