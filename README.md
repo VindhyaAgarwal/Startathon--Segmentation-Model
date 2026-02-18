@@ -34,16 +34,16 @@ Users can upload desert images and visualize **color-coded segmented results** i
 
 | Class | Color |
 |-------|-------|
-| Trees 🌳 | #228B22 |
-| Lush Bushes 🌿 | #32CD32 |
-| Dry Grass 🌾 | #DEB887 |
-| Dry Bushes 🌱 | #9ACD32 |
-| Ground Clutter 🪨 | #A9A9A9 |
-| Flowers 🌸 | #FF69B4 |
-| Logs 🪵 | #8B4513 |
-| Rocks 🪨 | #808080 |
-| Landscape 🏞️ | #F4A460 |
-| Sky ☁️ | #87CEEB |
+| Trees  | #228B22 |
+| Lush Bushes  | #32CD32 |
+| Dry Grass  | #DEB887 |
+| Dry Bushes  | #9ACD32 |
+| Ground Clutter  | #A9A9A9 |
+| Flowers  | #FF69B4 |
+| Logs  | #8B4513 |
+| Rocks  | #808080 |
+| Landscape  | #F4A460 |
+| Sky  | #87CEEB |
 
 
 ---
@@ -62,10 +62,10 @@ The model shows significant improvement over the baseline, achieving optimized a
 | **mAP@50** | `0.82` | 🟢 **+0.33** |
 | **Mean IoU** | `0.689` | 🟢 **+0.429** |
 | **Base IoU** | `0.26` | Baseline Reference |
-| **Improvement** | **+0.429** | 🚀 **165% gain** |
+| **Improvement** | **+0.429** |  **165% gain** |
 | **Freq-Weighted IoU** | `0.67` | 🟢 **+0.41** |
-| **Inference Time** | `47ms` | ⚡ **Real-time** |
-| **Model Size** | `27.5M` | 📦 **Lightweight (SegFormer-B2)** |
+| **Inference Time** | `47ms` |  **Real-time** |
+| **Model Size** | `27.5M` |  **Lightweight (SegFormer-B2)** |
 
 ---
 
@@ -75,16 +75,16 @@ Detailed performance analysis for each terrain category based on the `best.pt` c
 
 | Class | IoU | Precision | Recall | Color |
 | :--- | :---: | :---: | :---: | :--- |
-| 🌲 **Trees** | 0.67 | 0.69 | 0.65 | `#2E5C3E` |
-| 🌿 **Lush Bushes** | 0.65 | 0.67 | 0.63 | `#4A7A4C` |
-| 🟫 **Dry Grass** | 0.69 | 0.71 | 0.67 | `#B39E6D` |
-| 🌾 **Dry Bushes** | 0.63 | 0.65 | 0.61 | `#8B7D5E` |
-| ⛰️ **Ground Clutter** | 0.59 | 0.61 | 0.57 | `#7D6B4B` |
-| 🌼 **Flowers** | 0.61 | 0.63 | 0.59 | `#D4A55C` |
-| 🪵 **Logs** | 0.57 | 0.59 | 0.55 | `#6B4F3C` |
-| 🪨 **Rocks** | 0.75 | 0.77 | 0.73 | `#7A7A7A` |
-| 🏜️ **Landscape** | 0.76 | 0.78 | 0.74 | `#A67B5B` |
-| ☁️ **Sky** | 0.94 | 0.95 | 0.92 | `#6BA5C9` |
+|  **Trees** | 0.67 | 0.69 | 0.65 | `#2E5C3E` |
+|  **Lush Bushes** | 0.65 | 0.67 | 0.63 | `#4A7A4C` |
+|  **Dry Grass** | 0.69 | 0.71 | 0.67 | `#B39E6D` |
+|  **Dry Bushes** | 0.63 | 0.65 | 0.61 | `#8B7D5E` |
+|  **Ground Clutter** | 0.59 | 0.61 | 0.57 | `#7D6B4B` |
+|  **Flowers** | 0.61 | 0.63 | 0.59 | `#D4A55C` |
+|  **Logs** | 0.57 | 0.59 | 0.55 | `#6B4F3C` |
+|  **Rocks** | 0.75 | 0.77 | 0.73 | `#7A7A7A` |
+|  **Landscape** | 0.76 | 0.78 | 0.74 | `#A67B5B` |
+|  **Sky** | 0.94 | 0.95 | 0.92 | `#6BA5C9` |
 
 ---
 
