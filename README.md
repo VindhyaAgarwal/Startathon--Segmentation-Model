@@ -15,14 +15,14 @@
 
 ---
 
-## ** Project Overview**
+## Project Overview
 
 This project showcases a **semantic segmentation dashboard** for desert environments, powered by **SegFormer-B2**, a state-of-the-art transformer-based model.  
 Users can upload desert images and visualize **color-coded segmented results** in real-time. The dashboard also displays **per-class IoU, precision, recall**, and other performance metrics in an interactive, VS Code Dark+ themed UI.
 
 ---
 
-## ** Features**
+## Features
 
 - Upload desert images for instant segmentation
 - Interactive **segmentation preview** with class-specific color coding
@@ -53,7 +53,7 @@ Users can upload desert images and visualize **color-coded segmented results** i
 
 ---
 
-## **📈 Key Performance Indicators (KPIs)**
+## Key Performance Indicators (KPIs)
 
 The model shows significant improvement over the baseline, achieving optimized accuracy for complex desert terrain.
 
@@ -69,7 +69,7 @@ The model shows significant improvement over the baseline, achieving optimized a
 
 ---
 
-## **📊 Per-Class Breakdown**
+##  Per-Class Breakdown
 
 Detailed performance analysis for each terrain category based on the `best.pt` checkpoint (0.689 mIoU).
 
@@ -92,7 +92,7 @@ Detailed performance analysis for each terrain category based on the `best.pt` c
 
 ---
 
-## **🖥️ Tech Stack**
+## Tech Stack
 
 - **Frontend:** HTML, CSS, JavaScript (VS Code Dark+ theme)
 - **Backend:** Python + Flask for SegFormer-B2 model inference
@@ -106,7 +106,7 @@ Detailed performance analysis for each terrain category based on the `best.pt` c
 
 ---
 
-## **📂 Dataset**
+##  Dataset
 
 - Source: Falcon Digital Twin Desert Dataset  
 - Classes: 10 (Trees, Lush Bushes, Dry Grass, Dry Bushes, Ground Clutter, Flowers, Logs, Rocks, Landscape, Sky)   
@@ -114,7 +114,7 @@ Detailed performance analysis for each terrain category based on the `best.pt` c
 
 ---
 
-## **📸 Screenshots**
+## Screenshots
 
 **Dashboard Overview**  
 ![Screenshot 2026-02-18 233949](https://github.com/VindhyaAgarwal/startathon-segmentation-model/blob/main/Screenshot%202026-02-18%20233949.png?raw=true)
@@ -134,12 +134,9 @@ Detailed performance analysis for each terrain category based on the `best.pt` c
 
 
 
-
-> 💡 **Note:** Place all frontend images in an `images/` folder at the root of your repository. Update paths in your README accordingly.
-
 ---
 
-# **⚡ How to Run**
+# How to Run
 
 1.  **Clone the Repository:**
     ```bash
@@ -162,7 +159,7 @@ Detailed performance analysis for each terrain category based on the `best.pt` c
 
 ---
 
-## **🔄 How to Reproduce Results**
+## How to Reproduce Results
 
 To reproduce the benchmarked **0.689 mIoU** and **0.82 mAP@50** results, follow these steps:
 
@@ -175,7 +172,7 @@ To reproduce the benchmarked **0.689 mIoU** and **0.82 mAP@50** results, follow 
 ---
 
 
-## **💡 Interpreting the Output**
+## Interpreting the Output
 
 Understanding the dashboard results:
 
@@ -188,5 +185,5 @@ Understanding the dashboard results:
 
 ---
 
-## **📌 License**
+## 📌 License
 MIT License © 2026 **Vindhya Agarwal**
